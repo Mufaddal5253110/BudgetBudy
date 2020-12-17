@@ -33,67 +33,74 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(labelText: "Titile"),
-              //onChanged: (value) => inputTitle = value,
-              controller: inputTitleController,
-            ),
-            SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Amount",
+    return SingleChildScrollView(
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.only(
+            right: 10,
+            left: 10,
+            top: 10,
+            bottom: (MediaQuery.of(context).viewInsets.bottom) + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: InputDecoration(labelText: "Titile"),
+                //onChanged: (value) => inputTitle = value,
+                controller: inputTitleController,
               ),
-              //onChanged: (value) => inputAmount = value,
-              controller: inputAmountController,
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: <Widget>[
-                Text(_selectedDate != null
-                    ? DateFormat.yMMMd().format(_selectedDate)
-                    : "No Date Choosen Yet!"),
-                FlatButton(
-                  child: Text(
-                    "Choose Date",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  textColor: Theme.of(context).primaryColorDark,
-                  onPressed: () {
-                    chooseDate();
-                  },
+              SizedBox(height: 10),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Amount",
                 ),
-              ],
-            ),
-            SizedBox(height: 30),
-            RaisedButton(
-              child: Text("Add"),
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button.color,
-              onPressed: () {
-                final enteredTitle = inputTitleController.text;
-                final enteredAmount = double.parse(inputAmountController.text);
-                if (enteredTitle.isNotEmpty ||
-                    enteredAmount <= 0 ||
-                    _selectedDate == null) {
-                  widget.addTran(
-                      enteredTitle, enteredAmount, _selectedDate);
-                  //Navigator.of(context).pop();
-                  inputTitleController.clear();
-                  inputAmountController.clear();
-                  setState(() {
-                    _selectedDate = null;
-                  });
-                }
-              },
-            ),
-          ],
+                //onChanged: (value) => inputAmount = value,
+                controller: inputAmountController,
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: <Widget>[
+                  Text(_selectedDate != null
+                      ? DateFormat.yMMMd().format(_selectedDate)
+                      : "No Date Choosen Yet!"),
+                  FlatButton(
+                    child: Text(
+                      "Choose Date",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    textColor: Theme.of(context).primaryColorDark,
+                    onPressed: () {
+                      chooseDate();
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
+              RaisedButton(
+                child: Text("Add"),
+                color: Theme.of(context).primaryColor,
+                textColor: Theme.of(context).textTheme.button.color,
+                onPressed: () {
+                  final enteredTitle = inputTitleController.text;
+                  final enteredAmount =
+                      double.parse(inputAmountController.text);
+                  if (enteredTitle.isNotEmpty ||
+                      enteredAmount <= 0 ||
+                      _selectedDate == null) {
+                    widget.addTran(enteredTitle, enteredAmount, _selectedDate);
+                    //Navigator.of(context).pop();
+                    inputTitleController.clear();
+                    inputAmountController.clear();
+                    setState(() {
+                      _selectedDate = null;
+                    });
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
