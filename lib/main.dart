@@ -70,13 +70,13 @@ class _HomePageState extends State<HomePage> {
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't1',
+      id: 't3',
       title: 'New Dress',
       amount: 600,
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't2',
+      id: 't4',
       title: 'New ball',
       amount: 60,
       date: DateTime.now(),
@@ -93,9 +93,9 @@ class _HomePageState extends State<HomePage> {
     }).toList();
   }
 
-  void _deleteTransaction(int index) {
+  void _deleteTransaction(String id) {
     setState(() {
-      allTransaction.removeAt(index);
+      allTransaction.removeWhere((element) => element.id == id);
     });
   }
 
@@ -117,6 +117,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final mQ = MediaQuery.of(context);
+
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             backgroundColor: Theme.of(context).primaryColor,
@@ -143,16 +145,16 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Container(
             //width: double.infinity,
-            height: (MediaQuery.of(context).size.height -
+            height: (mQ.size.height -
                     appBar.preferredSize.height -
-                    MediaQuery.of(context).padding.top) *
+                    mQ.padding.top) *
                 0.25,
             child: Chart(lastWeakTransaction),
           ),
           Container(
-              height: (MediaQuery.of(context).size.height -
+              height: (mQ.size.height -
                       appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
+                      mQ.padding.top) *
                   0.75,
               child: TransactionList(allTransaction, _deleteTransaction)),
         ],
