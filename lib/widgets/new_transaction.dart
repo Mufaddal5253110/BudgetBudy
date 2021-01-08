@@ -1,11 +1,9 @@
+import 'package:daily_spending/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class NewTransaction extends StatefulWidget {
-  final Function addTran;
-
-  NewTransaction(this.addTran);
-
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }
@@ -33,6 +31,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    final transactions = Provider.of<Transactions>(context, listen: false);
     return SingleChildScrollView(
       child: Card(
         child: Padding(
@@ -84,12 +83,15 @@ class _NewTransactionState extends State<NewTransaction> {
                 textColor: Theme.of(context).textTheme.button.color,
                 onPressed: () {
                   final enteredTitle = inputTitleController.text;
-                  final enteredAmount =
-                      double.parse(inputAmountController.text);
-                  if (enteredTitle.isNotEmpty ||
-                      enteredAmount <= 0 ||
-                      _selectedDate == null) {
-                    widget.addTran(enteredTitle, enteredAmount, _selectedDate);
+                  final enteredAmount = int.parse(inputAmountController.text);
+                  if (enteredTitle.isNotEmpty &&
+                      enteredAmount >= 0 &&
+                      _selectedDate != null) {
+                    transactions.addTransactions(Transaction(
+                        id: DateTime.now().toString(),
+                        title: enteredTitle,
+                        amount: enteredAmount,
+                        date: _selectedDate));
                     //Navigator.of(context).pop();
                     inputTitleController.clear();
                     inputAmountController.clear();

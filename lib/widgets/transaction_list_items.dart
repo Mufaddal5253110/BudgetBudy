@@ -58,11 +58,40 @@ class _TransactionListItemsState extends State<TransactionListItems> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      widget.dltTrxItem(widget.trx.id);
-                    },
-                    color: Theme.of(context).errorColor,
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                    onPressed: () => showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => AlertDialog(
+                        title: Text('Are you sure'),
+                        content: Text(
+                            'Do you really want to delete this transaction?'),
+                        actions: [
+                          FlatButton(
+                              onPressed: () {
+                                widget.dltTrxItem(widget.trx.id);
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Yes',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Theme.of(context).primaryColor),
+                              )),
+                          FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'No',
+                                style: TextStyle(fontSize: 20),
+                              ))
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
