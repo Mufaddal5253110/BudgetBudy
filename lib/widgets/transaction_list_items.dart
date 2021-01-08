@@ -45,7 +45,7 @@ class _TransactionListItemsState extends State<TransactionListItems> {
               children: [
                 Text(
                   "${widget.trx.title}",
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 Text(
                   DateFormat.yMMMd().format(widget.trx.date),

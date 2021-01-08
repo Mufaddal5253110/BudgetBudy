@@ -8,8 +8,12 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           automaticallyImplyLeading: false,
-          title: Text('Daily Spendings'),
+          title: Text(
+            'Daily Spendings',
+            style: Theme.of(context).appBarTheme.textTheme.headline1,
+          ),
         ),
         body: ListView(
           children: <Widget>[

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'package:daily_spending/models/transaction.dart';
@@ -56,7 +55,7 @@ class _WeeklyStatsState extends State<WeeklyStats> {
           height: 350,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18.0),
-            color: const Color(0xff81e5cd),
+            color: Theme.of(context).primaryColorDark,//Color(0xff81e5cd),
           ),
           margin: EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(16),
@@ -67,7 +66,7 @@ class _WeeklyStatsState extends State<WeeklyStats> {
               Text(
                 'Analysis',
                 style: TextStyle(
-                    color: const Color(0xff0f4a3c),
+                    color: Theme.of(context).primaryColorLight,//Color(0xff0f4a3c),
                     fontSize: 24,
                     fontWeight: FontWeight.bold),
               ),
@@ -77,7 +76,7 @@ class _WeeklyStatsState extends State<WeeklyStats> {
               Text(
                 'Last Seven Days',
                 style: TextStyle(
-                    color: const Color(0xff379982),
+                    color: Theme.of(context).primaryColorLight,//const Color(0xff379982),
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
@@ -109,12 +108,12 @@ class _WeeklyStatsState extends State<WeeklyStats> {
       barRods: [
         BarChartRodData(
           y: y,
-          colors: isTouched ? [Colors.yellow] : [Colors.white],
+          colors: isTouched ? [Theme.of(context).primaryColor] : [Colors.white],
           width: 22,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             y: 20,
-            colors: [Color(0xff72d8bf)],
+            colors: [Theme.of(context).primaryColorLight],//[Color(0xff72d8bf)],
           ),
         ),
       ],

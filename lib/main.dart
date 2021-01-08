@@ -1,4 +1,3 @@
-
 import 'package:daily_spending/screens/home_screen.dart';
 import 'package:daily_spending/screens/stats_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +15,6 @@ void main() {
     DeviceOrientation.portraitUp,
   ]);
   runApp(preview.DevicePreview(
-
     builder: (context) => MyApp(),
   ));
 }
@@ -26,19 +24,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => Transactions(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Daily Spending',
         theme: ThemeData(
-          primarySwatch: Colors.amber,
+          primaryColor: Colors.amber,
+          accentColor: Colors.amberAccent,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline1: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
                 button:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
