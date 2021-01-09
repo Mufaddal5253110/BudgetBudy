@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class NewTransaction extends StatefulWidget {
+  static const routeName = '/new-transaction';
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }
@@ -32,13 +33,22 @@ class _NewTransactionState extends State<NewTransaction> {
   @override
   Widget build(BuildContext context) {
     final transactions = Provider.of<Transactions>(context, listen: false);
-    return SingleChildScrollView(
-      child: Card(
+
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          "Add Transaction",
+          style: Theme.of(context).appBarTheme.textTheme.headline1,
+        ),
+        backgroundColor: Colors.white10,
+      ),
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            right: 10,
-            left: 10,
-            top: 10,
+            right: 20,
+            left: 20,
+            top: 30,
             bottom: (MediaQuery.of(context).viewInsets.bottom) + 10,
           ),
           child: Column(

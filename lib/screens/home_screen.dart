@@ -1,7 +1,11 @@
-import 'package:daily_spending/screens/all_transactions.dart';
+import 'package:daily_spending/models/transaction.dart';
+import 'package:daily_spending/screens/transactions/daily_spendings.dart';
+import 'package:daily_spending/screens/transactions/monthly_spendings.dart';
+import 'package:daily_spending/screens/transactions/yearly_spendings.dart';
 import 'package:daily_spending/widgets/app_drawer.dart';
-import 'package:daily_spending/widgets/new_transaction.dart';
+import 'package:daily_spending/screens/new_transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -16,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(initialIndex: 0, length: 2, vsync: this);
+    tabController = new TabController(initialIndex: 0, length: 3, vsync: this);
   }
 
   @override
@@ -25,13 +29,18 @@ class _HomeScreenState extends State<HomeScreen>
     tabController.dispose();
   }
 
-  void _startToAddNewTransaction(BuildContext ctx) {
-    showModalBottomSheet(
-        context: ctx,
-        builder: (_) {
-          return NewTransaction();
-        });
-  }
+  // void _startToAddNewTransaction(BuildContext ctx) {
+  //   // showBottomSheet(
+  //   //   context: ctx,
+  //   //   builder: (ctx) => NewTransaction(),
+  //   // );
+
+  //   showModalBottomSheet(
+  //       context: ctx,
+  //       builder: (_) {
+  //         return NewTransaction();
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +50,25 @@ class _HomeScreenState extends State<HomeScreen>
           "Home",
           style: Theme.of(context).appBarTheme.textTheme.headline1,
         ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(NewTransaction.routeName)),
+        ],
         bottom: new TabBar(
+          unselectedLabelColor: Colors.grey,
+          labelColor: Colors.black,
+          indicatorColor: Theme.of(context).primaryColorDark,
           tabs: <Widget>[
             new Tab(
-              text: "Yearly",
+              text: "Daily",
             ),
             new Tab(
               text: 'Monthly',
+            ),
+            new Tab(
+              text: 'Yearly',
             ),
           ],
           controller: tabController,
@@ -55,16 +76,17 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: new TabBarView(
         children: <Widget>[
-          new AllTransactions(),
-          new AllTransactions(),
+          new DailySpendings(),
+          new MonthlySpendings(),
+          new YearlySpendings(),
         ],
         controller: tabController,
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startToAddNewTransaction(context),
+      drawer: Consumer<Transactions>(
+        builder: (context, trx, child) {
+          return AppDrawer(total: trx.getTotal(trx.transactions));
+        },
       ),
-      drawer: AppDrawer(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 import '../DBhelp/dbhelper.dart';
 
@@ -27,9 +28,12 @@ class Transactions with ChangeNotifier {
     return [..._transactions];
   }
 
-  int getTotal() {
+  int getTotal(List<Transaction> transaction) {
     var total = 0;
-    _transactions.forEach((item) {
+    if (transaction.isEmpty) {
+      return total;
+    }
+    transaction.forEach((item) {
       total += item.amount;
     });
     return total;
@@ -41,13 +45,44 @@ class Transactions with ChangeNotifier {
     DBHelper.insert(transaction);
   }
 
-  // List<Transaction> get monthlyTransactions(String month) {
-  //   return transactions.where((tx) {
-  //     return tx.date.isAfter(DateTime.now().subtract(
-  //       Duration(days: 7),
-  //     ));
-  //   }).toList();
-  // }
+  List<Transaction> monthlyTransactions(String month, String year) {
+    return _transactions.where((trx) {
+      if (DateFormat('yyyy')
+                  .format(DateTime.parse(trx.date.toIso8601String())) ==
+              year &&
+          DateFormat('MMM')
+                  .format(DateTime.parse(trx.date.toIso8601String())) ==
+              month) {
+        return true;
+      }
+      return false;
+    }).toList();
+  }
+
+  List<Transaction> yearlyTransactions(String year) {
+    return _transactions.where((trx) {
+      if (DateFormat('yyyy')
+              .format(DateTime.parse(trx.date.toIso8601String())) ==
+          year) {
+        return true;
+      }
+      return false;
+    }).toList();
+  }
+
+  List<Transaction> dailyTransactions() {
+    return _transactions.where((trx) {
+      if (DateTime.now().day ==
+              DateTime.parse(trx.date.toIso8601String()).day &&
+          DateTime.now().month ==
+              DateTime.parse(trx.date.toIso8601String()).month &&
+          DateTime.now().year ==
+              DateTime.parse(trx.date.toIso8601String()).year) {
+        return true;
+      }
+      return false;
+    }).toList();
+  }
 
   List<Transaction> get rescentTransactions {
     return transactions.where((tx) {

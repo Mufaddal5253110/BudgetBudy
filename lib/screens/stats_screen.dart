@@ -1,6 +1,6 @@
 import 'package:daily_spending/models/transaction.dart';
 import 'package:daily_spending/widgets/app_drawer.dart';
-import 'package:daily_spending/screens/weekly_stats.dart';
+import 'package:daily_spending/screens/statistics/weekly_stats.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

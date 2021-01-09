@@ -48,7 +48,6 @@ class _WeeklyStatsState extends State<WeeklyStats> {
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionValues);
     return Column(
       children: [
         Container(
