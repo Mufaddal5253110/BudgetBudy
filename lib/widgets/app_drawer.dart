@@ -1,5 +1,4 @@
 import 'package:daily_spending/screens/home_screen.dart';
-import 'package:daily_spending/screens/stats_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -35,14 +34,6 @@ class AppDrawer extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context)
                           .pushReplacementNamed(HomeScreen.routeName);
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.bar_chart),
-                    title: Text("Stats"),
-                    onTap: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(StatsScreen.routeName);
                     },
                   ),
                 ],

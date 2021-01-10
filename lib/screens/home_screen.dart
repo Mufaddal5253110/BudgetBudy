@@ -7,6 +7,8 @@ import 'package:daily_spending/screens/new_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './transactions/weakly_spendings.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
   @override
@@ -20,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(initialIndex: 0, length: 3, vsync: this);
+    tabController = new TabController(initialIndex: 0, length: 4, vsync: this);
   }
 
   @override
@@ -65,6 +67,9 @@ class _HomeScreenState extends State<HomeScreen>
               text: "Daily",
             ),
             new Tab(
+              text: "Weakly",
+            ),
+            new Tab(
               text: 'Monthly',
             ),
             new Tab(
@@ -77,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: new TabBarView(
         children: <Widget>[
           new DailySpendings(),
+          new WeaklySpendings(),
           new MonthlySpendings(),
           new YearlySpendings(),
         ],

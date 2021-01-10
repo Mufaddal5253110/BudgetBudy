@@ -1,6 +1,5 @@
 import 'package:daily_spending/screens/home_screen.dart';
 import 'package:daily_spending/screens/splash_screen.dart';
-import 'package:daily_spending/screens/stats_screen.dart';
 import 'package:daily_spending/screens/new_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -70,7 +69,6 @@ class MyApp extends StatelessWidget {
             ),
             routes: {
               // HomeScreen.routeName: (_) => HomeScreen(),
-              StatsScreen.routeName: (_) => StatsScreen(),
               NewTransaction.routeName: (_) => NewTransaction(),
             },
           );

@@ -1,4 +1,6 @@
+import 'package:daily_spending/models/pie_data.dart';
 import 'package:daily_spending/models/transaction.dart';
+import 'package:daily_spending/screens/statistics/pie_chart.dart';
 import 'package:daily_spending/widgets/no_trancaction.dart';
 import 'package:daily_spending/widgets/transaction_list_items.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +17,23 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
   String _selectedYear = DateFormat('yyyy').format(DateTime.now());
   String dropdownValue = DateFormat('MMM').format(DateTime.now());
 
+  bool _showChart = false;
+  Transactions trxData;
+  Function deleteFn;
+
+  @override
+  void initState() {
+    super.initState();
+    trxData = Provider.of<Transactions>(context, listen: false);
+    deleteFn =
+        Provider.of<Transactions>(context, listen: false).deleteTransaction;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final trxData = Provider.of<Transactions>(context, listen: false);
-    final deleteFn =
-        Provider.of<Transactions>(context, listen: false).deleteTransaction;
     final monthlyTrans = Provider.of<Transactions>(context)
         .monthlyTransactions(dropdownValue, _selectedYear);
-    print(dropdownValue);
-    print(_selectedYear);
-    // print(monthlyTrans[0]);
+    final List<PieData> monthlyData = PieData().pieChartData(monthlyTrans);
 
     return SingleChildScrollView(
       physics: ScrollPhysics(),
@@ -34,32 +43,57 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
           Container(
             padding: EdgeInsets.only(right: 10, left: 5, top: 5, bottom: 5),
             color: Theme.of(context).primaryColorLight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                dropDownToSelectMonth(context),
-                widgetToSelectYear(),
-                Text(
-                  "₹${trxData.getTotal(monthlyTrans)}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    dropDownToSelectMonth(context),
+                    widgetToSelectYear(),
+                    Text(
+                      "₹${trxData.getTotal(monthlyTrans)}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Show Chart',
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
+                      value: _showChart,
+                      onChanged: (val) {
+                        setState(() {
+                          _showChart = val;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
           monthlyTrans.isEmpty
               ? NoTransactions()
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    return TransactionListItems(
-                        trx: monthlyTrans[index], dltTrxItem: deleteFn);
-                  },
-                  itemCount: monthlyTrans.length,
-                ),
+              : (_showChart
+                  ? MyPieChart(pieData: monthlyData)
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) {
+                        return TransactionListItems(
+                            trx: monthlyTrans[index], dltTrxItem: deleteFn);
+                      },
+                      itemCount: monthlyTrans.length,
+                    )),
         ],
       ),
     );

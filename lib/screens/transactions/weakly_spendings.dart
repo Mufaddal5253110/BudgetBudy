@@ -1,30 +1,40 @@
 import 'package:daily_spending/models/pie_data.dart';
 import 'package:daily_spending/models/transaction.dart';
 import 'package:daily_spending/screens/statistics/pie_chart.dart';
+import 'package:daily_spending/screens/statistics/weekly_stats.dart';
 import 'package:daily_spending/widgets/no_trancaction.dart';
 import 'package:daily_spending/widgets/transaction_list_items.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DailySpendings extends StatefulWidget {
+class WeaklySpendings extends StatefulWidget {
   @override
-  _DailySpendingsState createState() => _DailySpendingsState();
+  _WeaklySpendingsState createState() => _WeaklySpendingsState();
 }
 
-class _DailySpendingsState extends State<DailySpendings> {
+class _WeaklySpendingsState extends State<WeaklySpendings> {
   bool _showChart = false;
+  Transactions trxData;
+  List<Transaction> recentTransaction;
+  List<PieData> recentData;
+  Function deleteFn;
+
+  @override
+  void initState() {
+    super.initState();
+
+    trxData = Provider.of<Transactions>(context, listen: false);
+    recentTransaction =
+        Provider.of<Transactions>(context, listen: false).rescentTransactions;
+
+    deleteFn =
+        Provider.of<Transactions>(context, listen: false).deleteTransaction;
+
+    recentData = PieData().pieChartData(recentTransaction);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final trxData = Provider.of<Transactions>(context, listen: false);
-
-    final deleteFn =
-        Provider.of<Transactions>(context, listen: false).deleteTransaction;
-
-    final dailyTrans = Provider.of<Transactions>(context).dailyTransactions();
-
-    final List<PieData> dailyData = PieData().pieChartData(dailyTrans);
-
     return SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(
@@ -48,7 +58,7 @@ class _DailySpendingsState extends State<DailySpendings> {
                         ),
                       ),
                       Text(
-                        "₹${trxData.getTotal(dailyTrans)}",
+                        "₹${trxData.getTotal(recentTransaction)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -76,21 +86,45 @@ class _DailySpendingsState extends State<DailySpendings> {
                   ),
                 ],
               )),
-          dailyTrans.isEmpty
+          recentTransaction.isEmpty
               ? NoTransactions()
               : (_showChart
-                  ? MyPieChart(pieData: dailyData)
+                  ? weaklyChart(context)
                   : ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    return TransactionListItems(
-                        trx: dailyTrans[index], dltTrxItem: deleteFn);
-                  },
-                  itemCount: dailyTrans.length,
-                ))
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) {
+                        return TransactionListItems(
+                            trx: recentTransaction[index],
+                            dltTrxItem: deleteFn);
+                      },
+                      itemCount: recentTransaction.length,
+                    ))
         ],
       ),
+    );
+  }
+
+  Column weaklyChart(
+    BuildContext context,
+    // List<PieData> recentData,
+    // List<Transaction> recentTransaction,
+  ) {
+    return Column(
+      children: [
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          color: Theme.of(context).primaryColorDark,
+          child: MyPieChart(pieData: recentData),
+        ),
+        WeaklyStats(
+          rescentTransactions: recentTransaction,
+        )
+      ],
     );
   }
 }

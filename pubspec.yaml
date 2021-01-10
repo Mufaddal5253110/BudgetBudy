@@ -33,6 +33,7 @@ dependencies:
   provider:
   path:
   fl_chart: ^0.12.2
+  random_color: ^1.0.5
 
   device_preview: ^0.4.7
 

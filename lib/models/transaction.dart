@@ -115,4 +115,77 @@ class Transactions with ChangeNotifier {
     notifyListeners();
     DBHelper.delete(id);
   }
+
+  List<Map<String, Object>> firstSixMonthsTransValues(
+      List<Transaction> trans, int year) {
+    return List.generate(6, (index) {
+      List<int> months = [
+        DateTime.january,
+        DateTime.february,
+        DateTime.march,
+        DateTime.april,
+        DateTime.may,
+        DateTime.june,
+      ];
+      List<String> monthsTitle = [
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+      ];
+      final perMonth = months[index];
+      final perMonthTitle = monthsTitle[index];
+      var totalSum = 0;
+      for (var i = 0; i < trans.length; i++) {
+        if (trans[i].date.month == perMonth && trans[i].date.year == year) {
+          totalSum += trans[i].amount;
+        }
+      }
+
+      return {
+        'amount': totalSum.toDouble(),
+        'month': perMonthTitle,
+      };
+    });
+  }
+
+  List<Map<String, Object>> lastSixMonthsTransValues(
+      List<Transaction> trans, int year) {
+    return List.generate(6, (index) {
+      List<int> months = [
+        DateTime.july,
+        DateTime.august,
+        DateTime.september,
+        DateTime.october,
+        DateTime.november,
+        DateTime.december,
+      ];
+      List<String> monthsTitle = [
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december',
+      ];
+      final perMonth = months[index];
+      final perMonthTitle = monthsTitle[index];
+      var totalSum = 0;
+      for (var i = 0; i < trans.length; i++) {
+        if (trans[i].date.month == perMonth && trans[i].date.year == year) {
+          totalSum += trans[i].amount;
+        }
+      }
+
+      /*print(DateFormat.E().format(weekDay));
+      print(totalSum);*/
+
+      return {
+        'amount': totalSum.toDouble(),
+        'month': perMonthTitle,
+      };
+    });
+  }
 }
