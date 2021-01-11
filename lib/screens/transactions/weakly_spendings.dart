@@ -17,34 +17,39 @@ class WeaklySpendings extends StatefulWidget {
 class _WeaklySpendingsState extends State<WeaklySpendings> {
   bool _showChart = false;
   Transactions trxData;
-  List<Transaction> recentTransaction;
-  List<PieData> recentData;
-  Function deleteFn;
+  // List<Transaction> recentTransaction;
+  // List<PieData> recentData;
+  // Function deleteFn;
 
   @override
   void initState() {
     super.initState();
 
     trxData = Provider.of<Transactions>(context, listen: false);
-    recentTransaction =
-        Provider.of<Transactions>(context, listen: false).rescentTransactions;
+    // recentTransaction =
+    //     Provider.of<Transactions>(context, listen: false).rescentTransactions;
 
-    deleteFn =
-        Provider.of<Transactions>(context, listen: false).deleteTransaction;
+    // deleteFn =
+    //     Provider.of<Transactions>(context, listen: false).deleteTransaction;
 
-    recentData = PieData().pieChartData(recentTransaction);
+    // recentData = PieData().pieChartData(recentTransaction);
   }
 
   @override
   Widget build(BuildContext context) {
+    final deleteFn =
+        Provider.of<Transactions>(context).deleteTransaction;
+    final recentTransaction =
+        Provider.of<Transactions>(context, listen: false).rescentTransactions;
+    final recentData = PieData().pieChartData(recentTransaction);
     return SingleChildScrollView(
       physics: ScrollPhysics(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-              padding:
-                  const EdgeInsets.only(right: 15, top: 10, bottom: 10, left: 15),
+              padding: const EdgeInsets.only(
+                  right: 15, top: 10, bottom: 10, left: 15),
               color: Theme.of(context).primaryColorLight,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -91,7 +96,7 @@ class _WeaklySpendingsState extends State<WeaklySpendings> {
           recentTransaction.isEmpty
               ? NoTransactions()
               : (_showChart
-                  ? weaklyChart(context)
+                  ? weaklyChart(context, recentTransaction, recentData)
                   : ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -109,11 +114,13 @@ class _WeaklySpendingsState extends State<WeaklySpendings> {
 
   Column weaklyChart(
     BuildContext context,
+    List<Transaction> recentTransaction,
+    List<PieData> recentData,
   ) {
     return Column(
       children: [
         Card(
-          shape:const RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),

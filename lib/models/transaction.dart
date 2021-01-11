@@ -8,12 +8,14 @@ class Transaction {
   final String title;
   final int amount;
   final DateTime date;
+  final String category;
 
   const Transaction({
     this.id,
     this.title,
     this.amount,
     this.date,
+    this.category
   });
 
   Map<String, dynamic> toMap(Transaction t) {
@@ -22,12 +24,12 @@ class Transaction {
       'title': t.title,
       'amount': t.amount,
       'date': t.date.toIso8601String(),
+      'category':t.category,
     };
   }
 }
 
 class Transactions with ChangeNotifier {
-  
   List<Transaction> _transactions = [];
 
   List<Transaction> get transactions {
@@ -109,6 +111,7 @@ class Transactions with ChangeNotifier {
             date: DateTime.parse(
               item['date'],
             ),
+            category: item['category'],
           ),
         )
         .toList();
@@ -184,10 +187,7 @@ class Transactions with ChangeNotifier {
           totalSum += trans[i].amount;
         }
       }
-
-      /*print(DateFormat.E().format(weekDay));
-      print(totalSum);*/
-
+      
       return {
         'amount': totalSum.toDouble(),
         'month': perMonthTitle,

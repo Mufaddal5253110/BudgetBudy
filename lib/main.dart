@@ -17,10 +17,12 @@ void main() {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(preview.DevicePreview(
+  runApp(//MyApp()
+    preview.DevicePreview(
     enabled: !kReleaseMode,
     builder: (context) => MyApp(),
-  ));
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
                   ),
               appBarTheme: AppBarTheme(
                 textTheme: ThemeData.light().textTheme.copyWith(
-                      headline1:const TextStyle(
+                      headline1: const TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 24,
                         color: Colors.black,

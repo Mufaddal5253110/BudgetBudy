@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:daily_spending/models/transaction.dart';
+import 'package:daily_spending/constants/categories.dart';
 
 class NewTransaction extends StatefulWidget {
   static const routeName = '/new-transaction';
@@ -16,6 +17,7 @@ class _NewTransactionState extends State<NewTransaction> {
   final inputAmountController = TextEditingController();
   DateTime _selectedDate;
   Transactions transactions;
+  String dropdownValue = 'Other';
 
   void chooseDate() {
     showDatePicker(
@@ -75,6 +77,8 @@ class _NewTransactionState extends State<NewTransaction> {
                 controller: inputAmountController,
                 keyboardType: TextInputType.number,
               ),
+              SizedBox(height: 10),
+              dropDownToSelectMonth(context),
               SizedBox(height: 20),
               Row(
                 children: <Widget>[
@@ -104,16 +108,21 @@ class _NewTransactionState extends State<NewTransaction> {
                   if (enteredTitle.isNotEmpty &&
                       enteredAmount >= 0 &&
                       _selectedDate != null) {
-                    transactions.addTransactions(Transaction(
+                    transactions.addTransactions(
+                      Transaction(
                         id: DateTime.now().toString(),
                         title: enteredTitle,
                         amount: enteredAmount,
-                        date: _selectedDate));
+                        date: _selectedDate,
+                        category: dropdownValue,
+                      ),
+                    );
                     //Navigator.of(context).pop();
                     inputTitleController.clear();
                     inputAmountController.clear();
                     setState(() {
                       _selectedDate = null;
+                      dropdownValue = 'Other';
                     });
                   }
                 },
@@ -122,6 +131,41 @@ class _NewTransactionState extends State<NewTransaction> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget dropDownToSelectMonth(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Category',
+          style: Theme.of(context).textTheme.headline1,
+        ),
+        DropdownButton<String>(
+          value: dropdownValue,
+          icon: const Icon(
+            Icons.expand_more,
+          ),
+          elevation: 16,
+          style: TextStyle(color: Theme.of(context).primaryColorDark),
+          underline: Container(
+            height: 2,
+            color: Theme.of(context).primaryColor,
+          ),
+          onChanged: (String newValue) {
+            setState(() {
+              dropdownValue = newValue;
+            });
+          },
+          items: categories.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 }

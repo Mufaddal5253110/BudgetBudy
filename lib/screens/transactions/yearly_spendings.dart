@@ -19,7 +19,7 @@ class _YearlySpendingsState extends State<YearlySpendings> {
   String _selectedYear = DateFormat('yyyy').format(DateTime.now());
   bool _showChart = false;
   Transactions trxData;
-  Function deleteFn;
+  // Function deleteFn;
   List<PieData> yearlyData;
   // List<Map<String, Object>> groupTransFirstSixMonths;
   // List<Map<String, Object>> groupTransLastSixMonths;
@@ -29,8 +29,8 @@ class _YearlySpendingsState extends State<YearlySpendings> {
   void initState() {
     super.initState();
     trxData = Provider.of<Transactions>(context, listen: false);
-    deleteFn =
-        Provider.of<Transactions>(context, listen: false).deleteTransaction;
+    // deleteFn =
+    //     Provider.of<Transactions>(context, listen: false).deleteTransaction;
     // yearlyTrans = Provider.of<Transactions>(context, listen: false)
     //     .yearlyTransactions(_selectedYear);
 
@@ -55,8 +55,8 @@ class _YearlySpendingsState extends State<YearlySpendings> {
   Widget build(BuildContext context) {
     // final trxData = Provider.of<Transactions>(context, listen: false);
 
-    // final deleteFn =
-    //     Provider.of<Transactions>(context, listen: false).deleteTransaction;
+    final deleteFn =
+        Provider.of<Transactions>(context).deleteTransaction;
 
     final yearlyTrans = Provider.of<Transactions>(context, listen: false)
         .yearlyTransactions(_selectedYear);

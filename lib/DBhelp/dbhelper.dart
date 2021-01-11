@@ -12,7 +12,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbpath, 'spendings.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE transactions(id TEXT PRIMARY KEY,title TEXT,amount INTEGER,date TEXT)');
+          'CREATE TABLE transactions(id TEXT PRIMARY KEY,title TEXT,amount INTEGER,date TEXT,category TEXT)');
     }, version: 1);
   }
 
