@@ -103,11 +103,13 @@ class _NewTransactionState extends State<NewTransaction> {
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
                 onPressed: () {
-                  final enteredTitle = inputTitleController.text;
-                  final enteredAmount = int.parse(inputAmountController.text);
-                  if (enteredTitle.isNotEmpty &&
-                      enteredAmount >= 0 &&
+                  if (inputTitleController.text.isNotEmpty &&
+                      (int.parse(inputAmountController.text)) >= 0 &&
                       _selectedDate != null) {
+                        
+                    final enteredTitle = inputTitleController.text;
+                    final enteredAmount = int.parse(inputAmountController.text);
+
                     transactions.addTransactions(
                       Transaction(
                         id: DateTime.now().toString(),
@@ -124,6 +126,17 @@ class _NewTransactionState extends State<NewTransaction> {
                       _selectedDate = null;
                       dropdownValue = 'Other';
                     });
+                  } else {
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Theme.of(context).errorColor,
+                        content: Text(
+                          "Fields can't be empty!",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
                   }
                 },
               ),
