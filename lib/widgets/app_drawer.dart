@@ -29,8 +29,8 @@ class AppDrawer extends StatelessWidget {
                 shrinkWrap: true,
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.home),
-                    title: Text("Home"),
+                    leading: const Icon(Icons.home),
+                    title: const Text("Home"),
                     onTap: () {
                       Navigator.of(context)
                           .pushReplacementNamed(HomeScreen.routeName);

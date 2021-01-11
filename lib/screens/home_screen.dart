@@ -1,12 +1,13 @@
-import 'package:daily_spending/models/transaction.dart';
-import 'package:daily_spending/screens/transactions/daily_spendings.dart';
-import 'package:daily_spending/screens/transactions/monthly_spendings.dart';
-import 'package:daily_spending/screens/transactions/yearly_spendings.dart';
-import 'package:daily_spending/widgets/app_drawer.dart';
-import 'package:daily_spending/screens/new_transaction.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
+import '../models/transaction.dart';
+import './transactions/daily_spendings.dart';
+import './transactions/monthly_spendings.dart';
+import './transactions/yearly_spendings.dart';
+import '../widgets/app_drawer.dart';
+import './new_transaction.dart';
 import './transactions/weakly_spendings.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,19 +31,6 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
     tabController.dispose();
   }
-
-  // void _startToAddNewTransaction(BuildContext ctx) {
-  //   // showBottomSheet(
-  //   //   context: ctx,
-  //   //   builder: (ctx) => NewTransaction(),
-  //   // );
-
-  //   showModalBottomSheet(
-  //       context: ctx,
-  //       builder: (_) {
-  //         return NewTransaction();
-  //       });
-  // }
 
   @override
   Widget build(BuildContext context) {

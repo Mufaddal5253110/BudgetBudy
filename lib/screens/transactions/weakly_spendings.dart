@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:daily_spending/models/pie_data.dart';
 import 'package:daily_spending/models/transaction.dart';
 import 'package:daily_spending/screens/statistics/pie_chart.dart';
 import 'package:daily_spending/screens/statistics/weekly_stats.dart';
 import 'package:daily_spending/widgets/no_trancaction.dart';
 import 'package:daily_spending/widgets/transaction_list_items.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class WeaklySpendings extends StatefulWidget {
   @override
@@ -42,7 +44,7 @@ class _WeaklySpendingsState extends State<WeaklySpendings> {
         children: <Widget>[
           Container(
               padding:
-                  EdgeInsets.only(right: 15, top: 10, bottom: 10, left: 15),
+                  const EdgeInsets.only(right: 15, top: 10, bottom: 10, left: 15),
               color: Theme.of(context).primaryColorLight,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -50,7 +52,7 @@ class _WeaklySpendingsState extends State<WeaklySpendings> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Total:",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -107,13 +109,11 @@ class _WeaklySpendingsState extends State<WeaklySpendings> {
 
   Column weaklyChart(
     BuildContext context,
-    // List<PieData> recentData,
-    // List<Transaction> recentTransaction,
   ) {
     return Column(
       children: [
         Card(
-          shape: RoundedRectangleBorder(
+          shape:const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),

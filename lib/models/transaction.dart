@@ -9,7 +9,12 @@ class Transaction {
   final int amount;
   final DateTime date;
 
-  Transaction({this.id, this.title, this.amount, this.date});
+  const Transaction({
+    this.id,
+    this.title,
+    this.amount,
+    this.date,
+  });
 
   Map<String, dynamic> toMap(Transaction t) {
     return {
@@ -22,6 +27,7 @@ class Transaction {
 }
 
 class Transactions with ChangeNotifier {
+  
   List<Transaction> _transactions = [];
 
   List<Transaction> get transactions {

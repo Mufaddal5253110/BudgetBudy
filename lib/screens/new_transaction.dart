@@ -1,7 +1,9 @@
-import 'package:daily_spending/models/transaction.dart';
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
+import 'package:daily_spending/models/transaction.dart';
 
 class NewTransaction extends StatefulWidget {
   static const routeName = '/new-transaction';
@@ -13,6 +15,7 @@ class _NewTransactionState extends State<NewTransaction> {
   final inputTitleController = TextEditingController();
   final inputAmountController = TextEditingController();
   DateTime _selectedDate;
+  Transactions transactions;
 
   void chooseDate() {
     showDatePicker(
@@ -31,9 +34,13 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final transactions = Provider.of<Transactions>(context, listen: false);
+  void initState() {
+    super.initState();
+    transactions = Provider.of<Transactions>(context, listen: false);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -55,13 +62,13 @@ class _NewTransactionState extends State<NewTransaction> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TextField(
-                decoration: InputDecoration(labelText: "Titile"),
+                decoration: const InputDecoration(labelText: "Titile"),
                 //onChanged: (value) => inputTitle = value,
                 controller: inputTitleController,
               ),
               SizedBox(height: 10),
               TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Amount",
                 ),
                 //onChanged: (value) => inputAmount = value,
@@ -75,7 +82,7 @@ class _NewTransactionState extends State<NewTransaction> {
                       ? DateFormat.yMMMd().format(_selectedDate)
                       : "No Date Choosen Yet!"),
                   FlatButton(
-                    child: Text(
+                    child: const Text(
                       "Choose Date",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -88,7 +95,7 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
               SizedBox(height: 30),
               RaisedButton(
-                child: Text("Add"),
+                child: const Text("Add"),
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
                 onPressed: () {

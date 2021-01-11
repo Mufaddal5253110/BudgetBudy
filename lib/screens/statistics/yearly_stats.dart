@@ -154,30 +154,6 @@ class _YearlyStatsState extends State<YearlyStats> {
               return widget.groupedTransactionValues[5]['month']
                   .toString()
                   .substring(0, 3);
-            // case 6:
-            //   return widget.groupedTransactionValues[6]['month']
-            //       .toString()
-            //       .substring(0, 3);
-            // case 7:
-            //   return widget.groupedTransactionValues[7]['month']
-            //       .toString()
-            //       .substring(0, 3);
-            // case 8:
-            //   return widget.groupedTransactionValues[8]['month']
-            //       .toString()
-            //       .substring(0, 3);
-            // case 9:
-            //   return widget.groupedTransactionValues[9]['month']
-            //       .toString()
-            //       .substring(0, 3);
-            // case 10:
-            //   return widget.groupedTransactionValues[10]['month']
-            //       .toString()
-            //       .substring(0, 3);
-            // case 11:
-            //   return widget.groupedTransactionValues[11]['month']
-            //       .toString()
-            //       .substring(0, 3);
             default:
               return '';
           }
@@ -218,24 +194,6 @@ class _YearlyStatsState extends State<YearlyStats> {
             case 5:
               weekDay = widget.groupedTransactionValues[5]['month'];
               break;
-            // case 6:
-            //   weekDay = widget.groupedTransactionValues[6]['month'];
-            //   break;
-            // case 7:
-            //   weekDay = widget.groupedTransactionValues[7]['month'];
-            //   break;
-            // case 8:
-            //   weekDay = groupedTransactionValues[8]['month'];
-            //   break;
-            // case 9:
-            //   weekDay = groupedTransactionValues[9]['month'];
-            //   break;
-            // case 10:
-            //   weekDay = groupedTransactionValues[10]['month'];
-            //   break;
-            // case 11:
-            //   weekDay = groupedTransactionValues[11]['month'];
-            //   break;
           }
           return BarTooltipItem(
             weekDay + '\n' + (rod.y).toString(),

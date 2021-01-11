@@ -8,7 +8,7 @@ class PieData {
   final Color color;
   final int price;
 
-  PieData({
+  const PieData({
     this.name,
     this.percent,
     this.color,

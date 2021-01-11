@@ -1,14 +1,15 @@
-import 'package:daily_spending/screens/home_screen.dart';
-import 'package:daily_spending/screens/splash_screen.dart';
-import 'package:daily_spending/screens/new_transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+
+import './screens/home_screen.dart';
+import './screens/splash_screen.dart';
+import './screens/new_transaction.dart';
+import './models/transaction.dart';
+
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart' as preview;
-
-import './models/transaction.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,18 +41,18 @@ class MyApp extends StatelessWidget {
               accentColor: Colors.amberAccent,
               fontFamily: 'Quicksand',
               textTheme: ThemeData.light().textTheme.copyWith(
-                    headline1: TextStyle(
+                    headline1: const TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                    button: TextStyle(
+                    button: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
               appBarTheme: AppBarTheme(
                 textTheme: ThemeData.light().textTheme.copyWith(
-                      headline1: TextStyle(
+                      headline1:const TextStyle(
                         fontFamily: 'OpenSans',
                         fontSize: 24,
                         color: Colors.black,

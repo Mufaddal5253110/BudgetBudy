@@ -23,8 +23,8 @@ class _TransactionListItemsState extends State<TransactionListItems> {
         child: Row(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              padding: EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              padding: const EdgeInsets.all(8.0),
               child: Text("₹${widget.trx.amount}",
                   style: TextStyle(
                     fontSize: 14,
@@ -32,13 +32,15 @@ class _TransactionListItemsState extends State<TransactionListItems> {
                     color: Theme.of(context).primaryColorDark,
                   )),
               decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15))),
+                border: Border.all(
+                  width: 2,
+                  color: Theme.of(context).primaryColor,
+                ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
+                ),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,8 +68,8 @@ class _TransactionListItemsState extends State<TransactionListItems> {
                       context: context,
                       barrierDismissible: false,
                       builder: (context) => AlertDialog(
-                        title: Text('Are you sure'),
-                        content: Text(
+                        title: const Text('Are you sure'),
+                        content: const Text(
                             'Do you really want to delete this transaction?'),
                         actions: [
                           FlatButton(
@@ -85,7 +87,7 @@ class _TransactionListItemsState extends State<TransactionListItems> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text(
+                              child: const Text(
                                 'No',
                                 style: TextStyle(fontSize: 20),
                               ))

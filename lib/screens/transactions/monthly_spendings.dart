@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import 'package:daily_spending/models/pie_data.dart';
 import 'package:daily_spending/models/transaction.dart';
 import 'package:daily_spending/screens/statistics/pie_chart.dart';
 import 'package:daily_spending/widgets/no_trancaction.dart';
 import 'package:daily_spending/widgets/transaction_list_items.dart';
-import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: 10, left: 5, top: 5, bottom: 5),
+            padding: const EdgeInsets.only(right: 10, left: 5, top: 5, bottom: 5),
             color: Theme.of(context).primaryColorLight,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -103,7 +104,7 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
     return Row(
       children: <Widget>[
         IconButton(
-          icon: Icon(Icons.arrow_left),
+          icon: const Icon(Icons.arrow_left),
           onPressed: int.parse(_selectedYear) == 0
               ? null
               : () {
@@ -114,7 +115,7 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
         ),
         Text(_selectedYear),
         IconButton(
-          icon: Icon(Icons.arrow_right),
+          icon: const Icon(Icons.arrow_right),
           onPressed: _selectedYear == DateFormat('yyyy').format(DateTime.now())
               ? null
               : () {
@@ -130,7 +131,7 @@ class _MonthlySpendingsState extends State<MonthlySpendings> {
   DropdownButton<String> dropDownToSelectMonth(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
-      icon: Icon(
+      icon: const Icon(
         Icons.expand_more,
       ),
       elevation: 16,
