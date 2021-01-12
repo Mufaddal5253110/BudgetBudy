@@ -133,9 +133,20 @@ class _NewTransactionState extends State<NewTransaction> {
                     inputTitleController.clear();
                     inputAmountController.clear();
                     setState(() {
-                      _selectedDate = DateTime.now();
+                      // _selectedDate = DateTime.now();
                       dropdownValue = 'Other';
                     });
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Theme.of(context).primaryColorLight,
+                        content: Text(
+                          "Data added Succesfully!",
+                          style: Theme.of(context).textTheme.headline1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
                   } else {
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
