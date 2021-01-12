@@ -15,7 +15,7 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final inputTitleController = TextEditingController();
   final inputAmountController = TextEditingController();
-  DateTime _selectedDate;
+  DateTime _selectedDate = DateTime.now();
   Transactions transactions;
   String dropdownValue = 'Other';
 
@@ -61,7 +61,7 @@ class _NewTransactionState extends State<NewTransaction> {
             bottom: (MediaQuery.of(context).viewInsets.bottom) + 10,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
                 decoration: const InputDecoration(labelText: "Titile"),
@@ -81,19 +81,30 @@ class _NewTransactionState extends State<NewTransaction> {
               dropDownToSelectMonth(context),
               SizedBox(height: 20),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(_selectedDate != null
-                      ? DateFormat.yMMMd().format(_selectedDate)
-                      : "No Date Choosen Yet!"),
-                  FlatButton(
-                    child: const Text(
-                      "Choose Date",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                  InkWell(
+                    onTap: () => chooseDate(),
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Text(
+                        "Choose Date",
+                        style: TextStyle(),
+                      ),
                     ),
-                    textColor: Theme.of(context).primaryColorDark,
-                    onPressed: () {
-                      chooseDate();
-                    },
+                  ),
+                  Text(
+                    DateFormat.yMMMd().format(_selectedDate),
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColorDark,
+                    ),
                   ),
                 ],
               ),
@@ -106,7 +117,6 @@ class _NewTransactionState extends State<NewTransaction> {
                   if (inputTitleController.text.isNotEmpty &&
                       (int.parse(inputAmountController.text)) >= 0 &&
                       _selectedDate != null) {
-                        
                     final enteredTitle = inputTitleController.text;
                     final enteredAmount = int.parse(inputAmountController.text);
 
@@ -123,7 +133,7 @@ class _NewTransactionState extends State<NewTransaction> {
                     inputTitleController.clear();
                     inputAmountController.clear();
                     setState(() {
-                      _selectedDate = null;
+                      _selectedDate = DateTime.now();
                       dropdownValue = 'Other';
                     });
                   } else {
@@ -133,6 +143,7 @@ class _NewTransactionState extends State<NewTransaction> {
                         backgroundColor: Theme.of(context).errorColor,
                         content: Text(
                           "Fields can't be empty!",
+                          style: Theme.of(context).textTheme.headline1,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -153,7 +164,6 @@ class _NewTransactionState extends State<NewTransaction> {
       children: [
         Text(
           'Category',
-          style: Theme.of(context).textTheme.headline1,
         ),
         DropdownButton<String>(
           value: dropdownValue,

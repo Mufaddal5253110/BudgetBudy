@@ -1,5 +1,6 @@
 import 'package:daily_spending/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
   final int total;
@@ -34,6 +35,40 @@ class AppDrawer extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context)
                           .pushReplacementNamed(HomeScreen.routeName);
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.mail),
+                    title: Text("Contact Us"),
+                    onTap: () async {
+                      String url = Uri.encodeFull(
+                          "mailto:mufaddalshakir55@gmail.com?subject=NeedHelp&body=Contact Reason: ");
+                      if (await canLaunch(url)) {
+                        Navigator.of(context).pop();
+                        await launch(url);
+                      }
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.help),
+                    title: Text("Help"),
+                    onTap: () async {},
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.info),
+                    title: Text("About"),
+                    onTap: () async {},
+                  ),
+                  ListTile(
+                    leading: Image.asset('assets/images/github.png',color: Colors.grey,),
+                    title: Text("Contribute"),
+                    onTap: () async {
+                      String url = Uri.encodeFull(
+                          "https://github.com/Mufaddal5253110/DailySpending.git");
+                      if (await canLaunch(url)) {
+                        Navigator.of(context).pop();
+                        await launch(url);
+                      }
                     },
                   ),
                 ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
 
-import 'package:daily_spending/models/transaction.dart';
 
 class YearlyStats extends StatefulWidget {
   final List<Map<String, Object>> groupedTransactionValues;
