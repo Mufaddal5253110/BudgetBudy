@@ -8,13 +8,15 @@ import './models/transaction.dart';
 
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MyApp()
+
+  runApp(
+    MyApp(),
   );
 }
 
@@ -51,15 +53,6 @@ class MyApp extends StatelessWidget {
                     ),
               ),
             ),
-            // home: FutureBuilder(
-            //   future: Provider.of<Transactions>(context, listen: false)
-            //       .fetchTransactions(),
-            //   builder: (ctx, snapshot) =>
-            //       (snapshot.connectionState == ConnectionState.waiting)
-            //           ? SplashScreen()
-            //           : HomeScreen(),
-            // ),
-
             routes: {
               HomeScreen.routeName: (_) => HomeScreen(),
               NewTransaction.routeName: (_) => NewTransaction(),
