@@ -67,14 +67,21 @@ class _HomeScreenState extends State<HomeScreen>
           controller: tabController,
         ),
       ),
-      body: new TabBarView(
-        children: <Widget>[
-          new DailySpendings(),
-          new WeaklySpendings(),
-          new MonthlySpendings(),
-          new YearlySpendings(),
-        ],
-        controller: tabController,
+      body: FutureBuilder(
+        future: Provider.of<Transactions>(context, listen: false)
+            .fetchTransactions(),
+        builder: (ctx, snapshot) =>
+            (snapshot.connectionState == ConnectionState.waiting)
+                ? Center(child: CircularProgressIndicator())
+                : TabBarView(
+                    children: <Widget>[
+                      new DailySpendings(),
+                      new WeaklySpendings(),
+                      new MonthlySpendings(),
+                      new YearlySpendings(),
+                    ],
+                    controller: tabController,
+                  ),
       ),
       drawer: Consumer<Transactions>(
         builder: (context, trx, child) {

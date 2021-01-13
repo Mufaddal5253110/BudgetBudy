@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 import './screens/home_screen.dart';
-import './screens/splash_screen.dart';
 import './screens/new_transaction.dart';
 import './models/transaction.dart';
 
@@ -52,15 +51,17 @@ class MyApp extends StatelessWidget {
                     ),
               ),
             ),
-            home: FutureBuilder(
-              future: Provider.of<Transactions>(context, listen: false)
-                  .fetchTransactions(),
-              builder: (ctx, snapshot) =>
-                  (snapshot.connectionState == ConnectionState.waiting)
-                      ? SplashScreen()
-                      : HomeScreen(),
-            ),
+            // home: FutureBuilder(
+            //   future: Provider.of<Transactions>(context, listen: false)
+            //       .fetchTransactions(),
+            //   builder: (ctx, snapshot) =>
+            //       (snapshot.connectionState == ConnectionState.waiting)
+            //           ? SplashScreen()
+            //           : HomeScreen(),
+            // ),
+
             routes: {
+              HomeScreen.routeName: (_) => HomeScreen(),
               NewTransaction.routeName: (_) => NewTransaction(),
             },
           );
