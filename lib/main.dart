@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,6 @@ import './screens/new_transaction.dart';
 import './models/transaction.dart';
 
 import 'package:provider/provider.dart';
-// import 'package:device_preview/device_preview.dart' as preview;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,24 +16,16 @@ void main() {
     DeviceOrientation.portraitUp,
   ]);
   runApp(MyApp()
-  //   preview.DevicePreview(
-  //   enabled: !kReleaseMode,
-  //   builder: (context) => MyApp(),
-  // )
   );
 }
 
 class MyApp extends StatelessWidget {
-  // Create the initialization Future outside of `build`:
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => Transactions(),
         builder: (context, child) {
           return MaterialApp(
-            // locale: preview.DevicePreview.of(context).locale,
-            // builder: preview.DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,
             title: 'Money Tracker',
             theme: ThemeData(
@@ -71,7 +61,6 @@ class MyApp extends StatelessWidget {
                       : HomeScreen(),
             ),
             routes: {
-              // HomeScreen.routeName: (_) => HomeScreen(),
               NewTransaction.routeName: (_) => NewTransaction(),
             },
           );

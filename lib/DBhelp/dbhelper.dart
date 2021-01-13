@@ -21,13 +21,11 @@ class DBHelper {
     final db = await DBHelper.getDatabase();
     await db.insert('transactions', transaction.toMap(transaction),
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
-    print('Transaction Data added');
   }
 
   //Retereving the transaction data
   static Future<List<Map<String, dynamic>>> fetch() async {
     final sqlDb = await DBHelper.getDatabase();
-    print('fetched and ready to return data');
     return sqlDb.query('transactions');
   }
 
@@ -35,6 +33,5 @@ class DBHelper {
   static Future<void> delete(String id) async {
     final sqlDb = await DBHelper.getDatabase();
     await sqlDb.delete('transactions', where: "id=?", whereArgs: [id]);
-    print('Item deleted from database');
   }
 }

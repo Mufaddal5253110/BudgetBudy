@@ -37,8 +37,6 @@ dependencies:
   url_launcher:
   
 
-  device_preview: ^0.4.7
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +64,7 @@ flutter:
   assets:
     - assets/images/waiting.png
     - assets/images/github.png
+    - assets/images/app_icon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

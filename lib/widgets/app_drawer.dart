@@ -60,7 +60,10 @@ class AppDrawer extends StatelessWidget {
                     onTap: () async {},
                   ),
                   ListTile(
-                    leading: Image.asset('assets/images/github.png',color: Colors.grey,),
+                    leading: Image.asset(
+                      'assets/images/github.png',
+                      color: Colors.grey,
+                    ),
                     title: Text("Contribute"),
                     onTap: () async {
                       String url = Uri.encodeFull(

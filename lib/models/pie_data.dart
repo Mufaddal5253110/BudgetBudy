@@ -20,8 +20,6 @@ class PieData {
   List<PieData> pieChartData(List<Transaction> trx) {
     int total = Transactions().getTotal(trx);
     List<Map<String, Object>> finalData = sortedPieData(trx);
-    print(finalData);
-    // print(total);
     RandomColor _randomColor = RandomColor();
 
     List<PieData> data = [];
