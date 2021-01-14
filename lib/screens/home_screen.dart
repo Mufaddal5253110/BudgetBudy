@@ -8,7 +8,7 @@ import './transactions/monthly_spendings.dart';
 import './transactions/yearly_spendings.dart';
 import '../widgets/app_drawer.dart';
 import './new_transaction.dart';
-import './transactions/weakly_spendings.dart';
+import './transactions/weekly_spendings.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/';
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
               text: "Daily",
             ),
             new Tab(
-              text: "Weakly",
+              text: "Weekly",
             ),
             new Tab(
               text: 'Monthly',
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen>
                 : TabBarView(
                     children: <Widget>[
                       new DailySpendings(),
-                      new WeaklySpendings(),
+                      new WeeklySpendings(),
                       new MonthlySpendings(),
                       new YearlySpendings(),
                     ],

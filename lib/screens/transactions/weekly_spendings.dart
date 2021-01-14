@@ -9,12 +9,12 @@ import 'package:daily_spending/screens/statistics/weekly_stats.dart';
 import 'package:daily_spending/widgets/no_trancaction.dart';
 import 'package:daily_spending/widgets/transaction_list_items.dart';
 
-class WeaklySpendings extends StatefulWidget {
+class WeeklySpendings extends StatefulWidget {
   @override
-  _WeaklySpendingsState createState() => _WeaklySpendingsState();
+  _WeeklySpendingsState createState() => _WeeklySpendingsState();
 }
 
-class _WeaklySpendingsState extends State<WeaklySpendings> {
+class _WeeklySpendingsState extends State<WeeklySpendings> {
   bool _showChart = false;
   Transactions trxData;
   // List<Transaction> recentTransaction;

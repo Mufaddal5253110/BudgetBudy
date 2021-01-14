@@ -64,7 +64,7 @@ class _NewTransactionState extends State<NewTransaction> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
-                decoration: const InputDecoration(labelText: "Titile"),
+                decoration: const InputDecoration(labelText: "Title"),
                 //onChanged: (value) => inputTitle = value,
                 controller: inputTitleController,
               ),
