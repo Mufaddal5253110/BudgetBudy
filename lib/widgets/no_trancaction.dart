@@ -7,20 +7,19 @@ class NoTransactions extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(
-          'No data available!',
-          style: Theme.of(context).textTheme.headline1,
-        ),
-        SizedBox(
-          height: 10,
-        ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.5,
+          // height: MediaQuery.of(context).size.height * 0.5,
           child: Image.asset(
             'assets/images/waiting.png',
             fit: BoxFit.cover,
           ),
-        )
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          'No data available!',
+        ),
       ],
     );
   }
