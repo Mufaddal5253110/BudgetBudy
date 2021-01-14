@@ -10,13 +10,8 @@ class Transaction {
   final DateTime date;
   final String category;
 
-  const Transaction({
-    this.id,
-    this.title,
-    this.amount,
-    this.date,
-    this.category
-  });
+  const Transaction(
+      {this.id, this.title, this.amount, this.date, this.category});
 
   Map<String, dynamic> toMap(Transaction t) {
     return {
@@ -24,7 +19,7 @@ class Transaction {
       'title': t.title,
       'amount': t.amount,
       'date': t.date.toIso8601String(),
-      'category':t.category,
+      'category': t.category,
     };
   }
 }
@@ -115,6 +110,7 @@ class Transactions with ChangeNotifier {
           ),
         )
         .toList();
+    _transactions.sort((a, b) => b.date.compareTo(a.date));
     notifyListeners();
   }
 
@@ -187,7 +183,7 @@ class Transactions with ChangeNotifier {
           totalSum += trans[i].amount;
         }
       }
-      
+
       return {
         'amount': totalSum.toDouble(),
         'month': perMonthTitle,

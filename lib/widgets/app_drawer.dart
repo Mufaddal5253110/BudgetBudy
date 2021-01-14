@@ -50,16 +50,6 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.help),
-                    title: Text("Help"),
-                    onTap: () async {},
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.info),
-                    title: Text("About"),
-                    onTap: () async {},
-                  ),
-                  ListTile(
                     leading: Image.asset(
                       'assets/images/github.png',
                       color: Colors.grey,

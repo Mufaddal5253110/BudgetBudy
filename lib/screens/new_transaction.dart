@@ -114,6 +114,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 color: Theme.of(context).primaryColor,
                 textColor: Theme.of(context).textTheme.button.color,
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   if (inputTitleController.text.isNotEmpty &&
                       (int.parse(inputAmountController.text)) >= 0 &&
                       _selectedDate != null) {
