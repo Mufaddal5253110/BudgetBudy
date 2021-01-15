@@ -23,3 +23,12 @@
 - [ ] create separate personal, business accounts
 - [ ] choose a quality icon for each category
 - [ ] Custom range picker to display expenses and analytics
+
+## Contributing
+
+If you want to take the time to make this project better, please read the [contributing guides](https://github.com/Mufaddal5253110/DailySpending/blob/master/CONTRIBUTING.md) first. Then, you can open an new [issue](https://github.com/Mufaddal5253110/DailySpending/issues/new/choose), of a [pull request](https://github.com/Mufaddal5253110/DailySpending/compare).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
