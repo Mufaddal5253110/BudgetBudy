@@ -1,4 +1,4 @@
-# ![](assets/images/app_icon.png) Daily Spendings
+# Daily Spendings
 Daily Spending is the easiest and most user friendly expense manager app. The simple fact is, by tracking your spending you will be able to stick to a budget and therefore SAVE MONEY.
 
 ## Overview
