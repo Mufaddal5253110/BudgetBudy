@@ -26,7 +26,7 @@
 
 ## Contributing
 
-If you want to take the time to make this project better, please read the [contributing guides](https://github.com/Mufaddal5253110/DailySpending/blob/master/CONTRIBUTING.md) first. Then, you can open an new [issue](https://github.com/Mufaddal5253110/DailySpending/issues/new/choose), of a [pull request](https://github.com/Mufaddal5253110/DailySpending/compare).
+If you want to take the time to make this project better, please read the Todo first and try to complete them. Then, you can open an new [issue](https://github.com/Mufaddal5253110/DailySpending/issues/new/choose), of a [pull request](https://github.com/Mufaddal5253110/DailySpending/compare).
 
 ## License
 
