@@ -1,12 +1,12 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/60619133/104684091-3c770300-571e-11eb-81dd-ce3079844f64.png" width="200">
 </p>
-<h1 align="center">Daily Spendings</h1>
-<h3 align="center">Daily Spending is the easiest and most user friendly expense manager app. The simple fact is, by tracking your spending you will be able to stick to a budget and therefore SAVE MONEY.</h3>
+<h1 align="center">Budget Budy</h1>
+<h3 align="center">Budget Budy is the easiest and most user friendly expense manager app. The simple fact is, by tracking your spending you will be able to stick to a budget and therefore SAVE MONEY.</h3>
 
 <p align="center">
   <a href="https://github.com/Mufaddal5253110/DailySpending/stargazers">
-    <img src="https://img.shields.io/github/stars/Mufaddal5253110/DailySpending.svg?style=for-the-badge">
+    <img src="https://img.shields.io/github/stars/Mufaddal5253110/BudgetBudy.svg?style=for-the-badge">
   </a>
 </p>
 
@@ -32,7 +32,7 @@
 
 ## Contributing
 
-If you want to take the time to make this project better, please read the Todo first and try to complete them. Then, you can open a new [issue](https://github.com/Mufaddal5253110/DailySpending/issues/new/choose), of a [pull request](https://github.com/Mufaddal5253110/DailySpending/compare).
+If you want to take the time to make this project better, please read the Todo first and try to complete them. Then, you can open a new [issue](https://github.com/Mufaddal5253110/BudgetBudy/issues/new/choose), of a [pull request](https://github.com/Mufaddal5253110/BudgetBudy/compare).
 
 ## License
 
